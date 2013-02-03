@@ -10,6 +10,14 @@ var express = require('express')
   , path = require('path')
   , everyauth = require('everyauth');
 
+everyauth.twitter
+  .consumerKey(TWITTER_CONSUMER_KEY)
+  .consumerSecret(TWITTER_CONSUMER_SECRET)
+  .findOrCreateUser( function(session, accessTaken, accessTokenSecret, twitterUserMetadata) {
+    console.log(twitterUserMetadata);
+  })
+  .redirectPath('/');
+
 var app = express();
 
 app.configure(function(){
@@ -20,6 +28,7 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(express.session({secret: SESSION_SECRET}));
   app.use(app.router);
   app.use(everyauth.middleware());
   app.use(express.static(path.join(__dirname, 'public')));
