@@ -15,5 +15,12 @@
   "dependencies": {
     "express": "3.0.6",
     "jade": "*"
+  },
+  "devDependencies": {
+    "mocha": "latest",
+    "should": "latest"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
