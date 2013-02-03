@@ -3,11 +3,11 @@
  * Module dependencies.
  */
 
-var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , path = require('path');
+var express = require('express'),
+  routes = require('./routes'),
+  user = require('./routes/user'),
+  http = require('http'),
+  path = require('path');
 
 /**
  * Environment variables
@@ -31,7 +31,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.session({secret: session_secret}));
   app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express['static'](path.join(__dirname, 'public')));
 });
 
 app.configure('development', function(){
