@@ -12,6 +12,10 @@
   "scripts": {
     "start": "node app"
   },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  },
   "dependencies": {
     "everyauth": "*",
     "express": "3.0.6",
