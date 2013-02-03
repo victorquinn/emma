@@ -7,7 +7,8 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , everyauth = require('everyauth');
 
 var app = express();
 
@@ -20,6 +21,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
+  app.use(everyauth.middleware());
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
