@@ -1,0 +1,14 @@
+{
+  "name": "emma",
+  "description": "a simple, personal switchboard operator for twilio - like openvbx",
+  "author": "Victor Quinn <mail@victorquinn.com>",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.6",
+    "jade": "*"
+  }
+}
