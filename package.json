@@ -4,6 +4,11 @@
   "author": "Victor Quinn <mail@victorquinn.com>",
   "version": "0.0.1",
   "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/victorquinn/emma"
+  },
   "scripts": {
     "start": "node app"
   },
