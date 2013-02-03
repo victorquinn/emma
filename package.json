@@ -17,10 +17,11 @@
     "npm": "1.1.x"
   },
   "dependencies": {
-    "everyauth": "*",
     "express": "3.0.6",
     "jade": "*",
-    "node-twilio": "0.1.1"
+    "node-twilio": "0.1.1",
+    "passport": "*",
+    "passport-twitter": "*"
   },
   "devDependencies": {
     "mocha": "latest",

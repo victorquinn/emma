@@ -3,24 +3,21 @@
  * Module dependencies.
  */
 
-var twitter_consumer_key = process.env.TWITTER_CONSUMER_KEY,
-    twitter_consumer_secret = process.env.TWITTER_CONSUMER_SECRET,
-    session_secret = process.env.SESSION_SECRET;
-
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path')
-  , everyauth = require('everyauth');
+  , path = require('path');
 
-everyauth.twitter
-  .consumerKey(twitter_consumer_key)
-  .consumerSecret(twitter_consumer_secret)
-  .findOrCreateUser( function(session, accessTaken, accessTokenSecret, twitterUserMetadata) {
-    console.log(twitterUserMetadata);
-  })
-  .redirectPath('/');
+/**
+ * Environment variables
+ */
+
+var twitter_consumer_key = process.env.TWITTER_CONSUMER_KEY,
+    twitter_consumer_secret = process.env.TWITTER_CONSUMER_SECRET,
+    session_secret = process.env.SESSION_SECRET;
+
+console.log(twitter_consumer_secret);
 
 var app = express();
 
@@ -34,7 +31,6 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.session({secret: session_secret}));
   app.use(app.router);
-  app.use(everyauth.middleware());
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
