@@ -4,7 +4,7 @@
  */
 
 var twitter_consumer_key = process.env.TWITTER_CONSUMER_KEY,
-    twitter_consumer_secret = process.env.TWITTER_CONSUMER_SECRECT,
+    twitter_consumer_secret = process.env.TWITTER_CONSUMER_SECRET,
     session_secret = process.env.SESSION_SECRET;
 
 var express = require('express')
