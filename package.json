@@ -20,6 +20,7 @@
     "express": "3.0.6",
     "jade": "*",
     "twilio": "*",
+    "mongoose": "*",
     "passport": "*",
     "passport-twitter": "*"
   },

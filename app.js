@@ -4,10 +4,14 @@
  */
 
 var express = require('express'),
+    mongoose = require('mongoose'),
     routes = require('./routes'),
     user = require('./routes/user'),
     http = require('http'),
-    path = require('path');
+    path = require('path'),
+    passport = require('passport'),
+    TwitterStrategy = require('passport-twitter').Strategy,
+    Schema = mongoose.Schema;
 
 /**
  * Environment variables
@@ -16,6 +20,49 @@ var express = require('express'),
 var twitter_consumer_key = process.env.TWITTER_CONSUMER_KEY,
     twitter_consumer_secret = process.env.TWITTER_CONSUMER_SECRET,
     session_secret = process.env.SESSION_SECRET;
+
+/**
+ * Data setup
+ */
+mongoose.connect(process.env.MONGOLAB_URI);
+var UserSchema = new Schema({
+  provider: String,
+  uid: String,
+  name: String,
+  image: String,
+  created: {type: Date, default: Date.now}
+});
+var User = mongoose.model('User', UserSchema);
+
+
+passport.use(new TwitterStrategy({
+    consumerKey: twitter_consumer_key,
+    consumerSecret: twitter_consumer_secret,
+    callbackURL: "http://localhost:5000/auth/twitter/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+    User.findOne({uid: profile.id}, function(err, user) {
+        if (user) {
+            done(null, user);
+        }
+        else {
+            var user = new User();
+            user.provider = "twitter";
+            user.uid = profile.id;
+            user.name = profile.displayName;
+            user.image = profile._json.profile_image_url;
+            user.save(function(err) {
+                if(err) { throw err; }
+                done(null, user);
+            });
+        }
+    });
+  }
+));
+
+passport.serializeUser(function(user, done) {
+    done(null, user.uid);
+});
 
 var app = express();
 
