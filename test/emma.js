@@ -7,8 +7,10 @@ process.env.TWITTER_CONSUMER_SECRET = 'abcd';
 process.env.SESSION_SECRET = 'a1b2c3d4';
 process.env.NODE_ENV = 'test';
 
-var should = require('should'),
+var chai = require('chai'),
+    expect = chai.expect,
     app = require('../app'),
+    config = require('../config'),
     supertest = require('supertest'),
     models = require('../models');
 
@@ -27,11 +29,12 @@ describe("Emma's", function() {
         .get('/')
         .expect(200)
         .end(function(err, res) {
-          should.not.exist(err);
+          expect(err).to.not.exist;
           done();
         });
     });
   });
+
 
   /*
   describe("'/auth/twitter' route", function() {

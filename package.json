@@ -32,7 +32,7 @@
     "grunt-mocha": "~0.2.1",
     "grunt-simple-mocha": "~0.3.2",
     "mocha": "latest",
-    "should": "latest",
+    "chai": "latest",
     "supertest": "*"
   },
   "scripts": {

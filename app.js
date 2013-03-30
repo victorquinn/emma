@@ -14,14 +14,13 @@ var express = require('express'),
 /**
  * Data setup
  */
-mongoose.connect(process.env.MONGOLAB_URI);
+mongoose.connect(config.mongoUri);
 
 var app = module.exports = express();
 
 passport.serializeUser(function(user, done) {
     done(null, user.uid);
 });
-
 
 app.configure(function(){
   app.set('port', config.port);
