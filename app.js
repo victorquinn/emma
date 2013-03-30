@@ -30,7 +30,7 @@ var UserSchema = new Schema({
   uid: String,
   name: String,
   image: String,
-  created: {type: Date, default: Date.now}
+  created: {type: Date, 'default': Date.now}
 });
 var User = mongoose.model('User', UserSchema);
 
@@ -46,7 +46,7 @@ passport.use(new TwitterStrategy({
             done(null, user);
         }
         else {
-            var user = new User();
+            user = new User();
             user.provider = "twitter";
             user.uid = profile.id;
             user.name = profile.displayName;
