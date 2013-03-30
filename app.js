@@ -64,7 +64,7 @@ passport.serializeUser(function(user, done) {
     done(null, user.uid);
 });
 
-var app = express();
+var app = module.exports = express();
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);

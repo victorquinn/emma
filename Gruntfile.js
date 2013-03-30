@@ -20,12 +20,12 @@ module.exports = function(grunt) {
         globals: ['should'],
         timeout: 3000,
         ui: 'bdd',
-        reporter: 'landing'
+        reporter: 'spec'
       },
       all: {src: 'test/*.js'}
     },
     watch: {
-      files: '*.js',
+      files: ['*.js', 'test/*.js'],
       tasks: ['simplemocha', 'jshint']
     }
   });
