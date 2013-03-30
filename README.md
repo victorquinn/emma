@@ -1,5 +1,7 @@
 # Emma - Your personal switchboard operator
 
+[Homepage](victorquinn.github.com/emma)
+
 ### About
 This is an [OpenVBX](http://www.openvbx.org) style switchboard operator in node.
 
