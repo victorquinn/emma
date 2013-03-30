@@ -19,7 +19,7 @@
   "dependencies": {
     "express": "3.0.6",
     "jade": "*",
-    "node-twilio": "0.1.1",
+    "twilio": "*",
     "passport": "*",
     "passport-twitter": "*"
   },
