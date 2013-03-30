@@ -1,6 +1,6 @@
 {
   "name": "emma",
-  "description": "a simple, personal switchboard operator for twilio - like openvbx",
+  "description": "a simple switchboard operator for twilio - like openvbx",
   "author": "Victor Quinn <mail@victorquinn.com>",
   "version": "0.0.1",
   "private": true,
@@ -19,10 +19,11 @@
   "dependencies": {
     "express": "3.1.0",
     "jade": "*",
-    "twilio": "*",
     "mongoose": "*",
     "passport": "*",
-    "passport-twitter": "*"
+    "passport-twitter": "*",
+    "require-directory": "*",
+    "twilio": "*"
   },
   "devDependencies": {
     "grunt": "~0.4.0",

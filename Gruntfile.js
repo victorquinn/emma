@@ -25,7 +25,7 @@ module.exports = function(grunt) {
       all: {src: 'test/*.js'}
     },
     watch: {
-      files: ['*.js', 'test/*.js'],
+      files: ['*.js', 'routes/*.js', 'test/*.js'],
       tasks: ['simplemocha', 'jshint']
     }
   });

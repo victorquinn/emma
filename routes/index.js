@@ -1,8 +1,6 @@
 
 /*
- * GET home page.
+ * Require all files defined in this directory.
  */
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
-};
+module.exports = require('require-directory')(module);

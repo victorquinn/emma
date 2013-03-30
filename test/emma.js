@@ -30,5 +30,17 @@ describe("Emma's", function() {
         });
     });
   });
+
+  describe("'/auth/twitter' route", function() {
+    it('should respond to /auth/twitter', function(done) {
+      supertest(app)
+        .get('/auth/twitter')
+        .expect(200)
+        .end(function(err, res) {
+          should.not.exist(err);
+          done();
+        });
+    });
+  });
 });
 
