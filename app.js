@@ -26,13 +26,17 @@ var twitter_consumer_key = process.env.TWITTER_CONSUMER_KEY,
 mongoose.connect(process.env.MONGOLAB_URI);
 var UserSchema = new Schema({
   provider: String,
+  username: String,
   uid: String,
-  name: String,
+  displayname: String,
+  firstname: String,
+  lastname: String,
   image: String,
   created: {type: Date, 'default': Date.now}
 });
 var User = mongoose.model('User', UserSchema);
 
+var app = module.exports = express();
 
 passport.use(new TwitterStrategy({
     consumerKey: twitter_consumer_key,
@@ -48,7 +52,8 @@ passport.use(new TwitterStrategy({
             user = new User();
             user.provider = "twitter";
             user.uid = profile.id;
-            user.name = profile.displayName;
+            user.displayname = profile.displayName;
+            user.username = profile.username;
             user.image = profile._json.profile_image_url;
             user.save(function(err) {
                 if(err) { throw err; }
@@ -63,7 +68,6 @@ passport.serializeUser(function(user, done) {
     done(null, user.uid);
 });
 
-var app = module.exports = express();
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -75,6 +79,7 @@ app.configure(function(){
   app.use(express.cookieParser());
   app.use(express.methodOverride());
   app.use(express.session({secret: session_secret}));
+  app.use(passport.initialize());
   app.use(app.router);
   app.use(express['static'](path.join(__dirname, 'public')));
 });
