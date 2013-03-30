@@ -1,6 +1,7 @@
 /*
  * Set up some environment defaults for these tests
  */
+
 process.env.TWITTER_CONSUMER_KEY = 1234;
 process.env.TWITTER_CONSUMER_SECRET = 'abcd';
 process.env.SESSION_SECRET = 'a1b2c3d4';
@@ -8,7 +9,8 @@ process.env.NODE_ENV = 'test';
 
 var should = require('should'),
     app = require('../app'),
-    supertest = require('supertest');
+    supertest = require('supertest'),
+    models = require('../models');
 
 describe("Emma", function() {
   describe("is alive", function() {
@@ -31,6 +33,7 @@ describe("Emma's", function() {
     });
   });
 
+  /*
   describe("'/auth/twitter' route", function() {
     it('should respond to /auth/twitter', function(done) {
       supertest(app)
@@ -42,5 +45,5 @@ describe("Emma's", function() {
         });
     });
   });
+  */
 });
-
