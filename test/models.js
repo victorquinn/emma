@@ -55,10 +55,12 @@ describe("User Model", function() {
 
     describe("delete", function() {
         it("can be deleted", function(done) {
-             testuser.remove({uid: '12345'});
-             done();
+             User.remove({uid: '12345'}, function(err) {
+                 done();
+             });
         });
-        it("can be deleted", function(done) {
+
+        it("was deleted", function(done) {
              User.find({uid: '12345'}, function(err, user) {
                  assert.deepEqual([], user);
                  done();
