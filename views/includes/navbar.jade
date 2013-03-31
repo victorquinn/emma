@@ -2,5 +2,8 @@ div.navbar
   div.navbar-inner
     div.container
       a.brand(href='#') #{title}
+      if (locals.user)
+        img.pull-right(src=user.image) user.displayname
+        a.btn.btn-small.pull-right(href="/logout") Log out
+      else
         a.btn.pull-right(href="/login") Log in with Twitter
-       
