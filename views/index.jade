@@ -1,6 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  a(href="auth/twitter") Log in with Twitter
+  div.container
+    div.content
+      div.page-header
+      div.row
+        div.span10
+          a.btn.btn-large.btn-success(href="auth/twitter") Sign up with Twitter
+        div.span4
+        
+    div.footer
