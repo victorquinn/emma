@@ -9,7 +9,9 @@ var express = require('express'),
     routes = require('./routes'),
     http = require('http'),
     path = require('path'),
-    passport = require('passport');
+    passport = require('passport'),
+    models = require('./models'),
+    User = models.User;
 
 /**
  * Data setup
@@ -18,8 +20,19 @@ mongoose.connect(config.mongoUri);
 
 var app = module.exports = express();
 
+function checkAuth(req,res,next){
+    if(req.user) next();//Forward the request so it can be handled by your router
+    else res.send(403);//send access denied
+}
+
 passport.serializeUser(function(user, done) {
     done(null, user.uid);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findOne({uid: id}, function(err, user) {
+    done(err, user);
+  });
 });
 
 app.configure(function(){
@@ -33,9 +46,12 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.session({secret: config.session_secret}));
   app.use(passport.initialize());
+  app.use(passport.session());
   app.use(app.router);
   app.use(express['static'](path.join(__dirname, 'public')));
 });
+
+app.all('/account/*', checkAuth);
 
 var key;
 for (key in routes) {

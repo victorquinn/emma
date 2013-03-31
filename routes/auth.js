@@ -40,7 +40,11 @@ module.exports = function(app) {
     ));
 
   app.get('/auth/twitter', passport.authenticate('twitter'));
+
   app.get('/auth/twitter/callback',
-    passport.authenticate('twitter', { successRedirect: '/',
+    passport.authenticate('twitter', { successRedirect: '/account',
                                        failureRedirect: '/login' }));
+
+  app.get('/login', function(req, res) {
+  });
 };
