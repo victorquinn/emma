@@ -3,8 +3,7 @@
  * Module dependencies.
  */
 
-var newrelic = require('newrelic'),
-    express = require('express'),
+var express = require('express'),
     mongoose = require('mongoose'),
     config = require('./config'),
     routes = require('./routes'),
